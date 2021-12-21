@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities;
+using Core.Specification;
 
 namespace Core.Interfaces
 {
@@ -12,6 +13,6 @@ namespace Core.Interfaces
 
         Task<IReadOnlyList<Product>> GetProductsAsync();
         Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync();
-        Task<IReadOnlyList<ProductType>> GetProductTypeAsync();
+        Task<IReadOnlyList<ProductType>> GetProductTypeAsync();      
     }
 }
