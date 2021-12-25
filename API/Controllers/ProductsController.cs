@@ -53,13 +53,17 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+       public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
 
             var product = await _productsRepo.GetEntityWithSpec(spec);
 
-            return Ok(_mapper.Map<Product,ProductToReturnDto>(product));
+            if (product == null) return NotFound(new ApiResponse(404));
+
+            return _mapper.Map<ProductToReturnDto>(product);
         }
 
         [HttpGet("brands")]
