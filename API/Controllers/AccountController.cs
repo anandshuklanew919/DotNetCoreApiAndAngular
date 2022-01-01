@@ -21,14 +21,16 @@ namespace API.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
+        private readonly ILogger<AccountController>  _logger;
         public AccountController(UserManager<AppUser> userManager,
          SignInManager<AppUser> signInManager, ITokenService tokenService,
-         IMapper mapper)
+         IMapper mapper,ILogger<AccountController>  logger)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _tokenService = tokenService;
             _mapper = mapper;
+            _logger = logger;
         }
         [Authorize]
         [HttpGet]
@@ -93,6 +95,7 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
+            _logger.LogError(registerDto.Password);
             if(CheckEmailExistsAsync(registerDto.Email).Result.Value)
             {
                 return new BadRequestObjectResult(new ApiValidationErrorResponse{Errors = new []

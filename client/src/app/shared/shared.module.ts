@@ -6,6 +6,10 @@ import { PagerComponent } from './components/pager/pager.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import{CarouselModule} from 'ngx-bootstrap/carousel';
 import { OrderTotalsComponent } from './order-totals/order-totals.component'
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TextInputComponent } from './text-input/text-input.component';
 
 
 
@@ -13,13 +17,16 @@ import { OrderTotalsComponent } from './order-totals/order-totals.component'
   declarations: [
     PagingHeaderComponent,
     PagerComponent,
-    OrderTotalsComponent
+    OrderTotalsComponent,
+    TextInputComponent
   ],
   imports: [
     CommonModule,
     NgxSpinnerModule,
     PaginationModule.forRoot(),
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    ReactiveFormsModule
   ],
   exports: [
     PaginationModule,
@@ -27,7 +34,10 @@ import { OrderTotalsComponent } from './order-totals/order-totals.component'
     PagingHeaderComponent,
     PagerComponent,
     CarouselModule,
-    OrderTotalsComponent
+    OrderTotalsComponent,
+    TextInputComponent,
+    ReactiveFormsModule,
+    BsDropdownModule
   ]
 })
 export class SharedModule { }
